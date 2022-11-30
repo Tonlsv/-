@@ -1,56 +1,52 @@
 {
-    "root": true,
-    "env": {
-        "browser": true,
-        "es2021": true
+  "extends": "eslint:recommended",
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "es6": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "no-console": "off",
+    "strict": ["error", "global"],
+    "curly": "warn"
+  },
+  "overrides": [
+    {
+      "files": [
+        "docusaurus/website/src/**/*.js",
+        "packages/cra-template/**/*.js",
+        "packages/react-error-overlay/**/*.js",
+        "packages/react-scripts/fixtures/kitchensink/template/{src,integration}/**/*.js",
+        "test/fixtures/*/src/*.js"
+      ],
+      "excludedFiles": ["packages/react-error-overlay/*.js"],
+      "extends": ["react-app", "react-app/jest"]
     },
-    "extends": ["prettier", "plugin:react/jsx-runtime", "plugin:jsx-a11y/recommended", "plugin:react-hooks/recommended"],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "moduleDirectory": ["node_modules", "src/"]
-            }
-        }
+    {
+      "files": [
+        "test/fixtures/webpack-message-formatting/src/{AppLintError,AppLintWarning,AppUnknownFile}.js"
+      ],
+      "rules": {
+        "no-unused-vars": "off",
+        "no-undef": "off"
+      }
     },
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
-            "impliedStrict": true
-        },
-        "ecmaVersion": 12
+    {
+      "files": ["test/fixtures/webpack-message-formatting/src/Export5.js"],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
     },
-    "plugins": ["prettier", "react", "react-hooks"],
-    "rules": {
-        "react/jsx-filename-extension": 0,
-        "no-param-reassign": 0,
-        "react/prop-types": 1,
-        "react/require-default-props": 0,
-        "react/no-array-index-key": 0,
-        "react/jsx-props-no-spreading": 0,
-        "react/forbid-prop-types": 0,
-        "import/order": 0,
-        "no-console": 0,
-        "jsx-a11y/anchor-is-valid": 0,
-        "prefer-destructuring": 0,
-        "no-shadow": 0,
-        "no-unused-vars": [
-            1,
-            {
-                "ignoreRestSiblings": false
-            }
-        ],
-        "prettier/prettier": [
-            2,
-            {
-                "bracketSpacing": true,
-                "printWidth": 140,
-                "singleQuote": true,
-                "trailingComma": "none",
-                "tabWidth": 4,
-                "useTabs": false,
-                "endOfLine": "auto"
-            }
-        ]
+    {
+      "files": ["test/fixtures/issue-5176-flow-class-properties/src/App.js"],
+      "rules": {
+        "no-dupe-class-members": "off"
+      }
     }
+  ]
 }
